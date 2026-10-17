@@ -1,5 +1,5 @@
 # reCOVERme
-![reCOVERme](https://github.com/wumwumwum/reCOVERme/blob/main/reCOVERme%20logo/Banner.png))
+![reCOVERme](https://github.com/wumwumwum/reCOVERme/blob/main/reCOVERme%20logo/Banner.png)
 
 I want to provide the info needed for people to know that there data is safe.
 
