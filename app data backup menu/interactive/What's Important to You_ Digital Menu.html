@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What's important to you?</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#F4F7FA;--card:#fff;--ink:#12202F;--mute:#4B5B6B;--line:#C9D3DD;--acc:#0B6B66;--accbg:#E3F5F3;--btn:#0B6B66;--btnink:#fff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1620;--card:#16212E;--ink:#EAF0F6;--mute:#A9B7C6;--line:#2C3B4C;--acc:#5FD0C8;--accbg:#12302F;--btn:#5FD0C8;--btnink:#0E1620;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1620;--card:#16212E;--ink:#EAF0F6;--mute:#A9B7C6;--line:#2C3B4C;--acc:#5FD0C8;--accbg:#12302F;--btn:#5FD0C8;--btnink:#0E1620;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.4 'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+main{max-width:720px;margin:0 auto;padding:28px 18px 48px}
+.k{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--mute)}
+h1{font-size:34px;line-height:1.1;margin:6px 0 10px;font-weight:800}
+.lead{color:var(--mute);margin:0 0 22px}
+.g{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.g h2{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--acc);margin:0 0 6px}
+.row{display:flex;align-items:center;gap:12px;min-height:44px;padding:2px 0;border-top:1px solid var(--line)}
+.row:first-of-type{border-top:0}
+.row label{flex:1;display:flex;align-items:center;gap:12px;min-height:44px;cursor:pointer}
+.row input{width:22px;height:22px;accent-color:var(--acc);flex:none}
+.tag{font-size:12px;font-weight:700;color:var(--acc);background:var(--accbg);border-radius:20px;padding:3px 10px;white-space:nowrap}
+.tag.off{visibility:hidden}
+input.t,textarea{width:100%;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+textarea{min-height:200px;resize:vertical}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.b{font:inherit;font-weight:700;min-height:46px;padding:0 20px;border-radius:10px;border:0;background:var(--btn);color:var(--btnink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.b.s{background:transparent;color:var(--acc);border:2px solid var(--acc)}
+.note{font-size:14px;color:var(--mute)}
+#key{display:flex;gap:8px 16px;flex-wrap:wrap;margin:0 0 18px;font-size:14px;color:var(--mute)}
+</style>
+</head>
+<body>
+<main>
+<div class="k">THE FAMILY SAFETY NET</div>
+<h1>What's important to you?</h1>
+<p class="lead">Tick everything you couldn't replace if you lost it. Your photos and documents are already covered. This is for what lives inside apps and online accounts. Nothing is sent until you choose to send it.</p>
+<div id="key"></div>
+<div id="list"></div>
+<div class="g"><h2>Anything else</h2><input class="t" id="other" type="text" aria-label="Anything else" placeholder="An app or account not listed"></div>
+<div class="g"><h2>Your name</h2><input class="t" id="name" type="text" aria-label="Your name" placeholder="Name"></div>
+<div class="g"><h2>Your list (<span id="count">0</span> selected)</h2>
+<textarea id="out" readonly aria-label="Your list"></textarea>
+<div class="btns"><button class="b" id="copy" type="button">Copy my list</button><a class="b s" id="mail" target="_blank" rel="noopener" hidden>Email it</a></div>
+<div class="note" id="status">Copy your list and send it to the person who set up your backup. We'll tell you how each one can be saved, how often, and what can't be exported at all.</div></div>
+</main>
+<script>
+var HOST_EMAIL="";
+var TAGS={A:"Automatic",S:"Scheduled",M:"Manual",X:"Limited"};
+var G=[["Messages and chats",[["WhatsApp","M"],["iMessage / Messages","M"],["Signal","X"],["Telegram","M"],["Facebook Messenger","M"],["Snapchat","M"],["Discord","M"]]],
+["Social media",[["Facebook","M"],["Instagram","M"],["TikTok","M"],["X (Twitter)","M"],["LinkedIn","M"],["Pinterest","M"],["Reddit","M"]]],
+["Email, contacts, calendar",[["Gmail","A"],["Other email (iCloud, Outlook)","A"],["Contacts","A"],["Calendar","A"]]],
+["Files and notes",[["Google Drive","A"],["Dropbox / OneDrive / Mega","A"],["iCloud Drive","M"],["Apple Notes","X"],["Notion","M"],["Evernote","M"],["OneNote","X"]]],
+["Photos and video elsewhere",[["Google Photos","S"],["iCloud Photos","A"],["Amazon Photos","M"],["YouTube channel","S"]]],
+["Health and fitness",[["Apple Health","M"],["Fitbit","S"],["Garmin","M"],["Strava","M"],["Samsung Health","M"],["MyFitnessPal","M"]]],
+["Money and records",[["Bank and card statements","M"],["PayPal / Venmo","M"],["Budgeting app","M"],["Tax documents","M"]]],
+["Passwords and logins",[["Password manager","M"],["Authenticator codes","X"]]],
+["Media and purchases",[["Music playlists","M"],["Kindle / Audible","X"],["Amazon order history","M"]]]];
+var sel={};
+try{sel=JSON.parse(localStorage.getItem("menu-sel")||"{}")||{};}catch(e){sel={};}
+var $=function(i){return document.getElementById(i)};
+var key=$("key");
+["A","S","M","X"].forEach(function(c){var s=document.createElement("span");s.textContent=TAGS[c]+": "+({A:"runs by itself once set up",S:"scheduled, needs renewing",M:"needs a periodic export",X:"limited or no export"})[c];key.appendChild(s);});
+var list=$("list");
+G.forEach(function(g,gi){
+ var box=document.createElement("div");box.className="g";
+ var h=document.createElement("h2");h.textContent=g[0];box.appendChild(h);
+ g[1].forEach(function(it,ii){
+  var id="c"+gi+"_"+ii;
+  var row=document.createElement("div");row.className="row";
+  var lab=document.createElement("label");lab.htmlFor=id;
+  var cb=document.createElement("input");cb.type="checkbox";cb.id=id;cb.checked=!!sel[it[0]];
+  var tx=document.createElement("span");tx.textContent=it[0];
+  lab.appendChild(cb);lab.appendChild(tx);
+  var tag=document.createElement("span");tag.className="tag"+(cb.checked?"":" off");tag.textContent=TAGS[it[1]];
+  cb.addEventListener("change",function(){
+   if(cb.checked)sel[it[0]]=1;else delete sel[it[0]];
+   tag.className="tag"+(cb.checked?"":" off");
+   try{localStorage.setItem("menu-sel",JSON.stringify(sel));}catch(e){}
+   build();
+  });
+  row.appendChild(lab);row.appendChild(tag);box.appendChild(row);
+ });
+ list.appendChild(box);
+});
+function build(){
+ var lines=["What's important to me:",""],n=0;
+ G.forEach(function(g){
+  var picked=g[1].filter(function(it){return sel[it[0]]});
+  if(picked.length){lines.push(g[0]);picked.forEach(function(it){n++;lines.push("- "+it[0]+" ("+TAGS[it[1]].toLowerCase()+")")});lines.push("");}
+ });
+ var o=$("other").value.trim();if(o){lines.push("Anything else: "+o);lines.push("");n+=1;}
+ var nm=$("name").value.trim();if(nm)lines.push("Name: "+nm);
+ var txt=n?lines.join("\n"):"";
+ $("out").value=txt;$("count").textContent=n;
+ var m=$("mail");
+ if(HOST_EMAIL&&n){m.hidden=false;m.href="mailto:"+HOST_EMAIL+"?subject="+encodeURIComponent("What's important to me")+"&body="+encodeURIComponent(txt);}else m.hidden=true;
+}
+$("other").addEventListener("input",build);$("name").addEventListener("input",build);
+$("copy").addEventListener("click",function(){
+ var t=$("out").value,st=$("status");
+ if(!t){st.textContent="Tick at least one item first.";return;}
+ var fallback=function(){$("out").select();var ok=false;try{ok=document.execCommand("copy");}catch(e){}
+  st.textContent=ok?"Copied. Paste it into a message to your backup helper.":"Select the text above and copy it, then send it to your backup helper.";};
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){st.textContent="Copied. Paste it into a message to your backup helper.";},fallback);}else fallback();
+});
+build();
+</script>
+</body>
+</html>
