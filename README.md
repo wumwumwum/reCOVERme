@@ -1,7 +1,7 @@
 # reCOVERme
 ![reCOVERme](https://github.com/wumwumwum/reCOVERme/blob/main/reCOVERme%20logo/Banner.png)
 
-I want to provide the info needed for people to know that there data is safe.
+I want to provide the info needed for people to know that their data is safe.
 
 It seems like a daunting task to keep track of all of your data. Most of us don't even realize how much data we are actually responsible for.
 
@@ -12,15 +12,13 @@ Contained in this repo is all of the information that I have provided to friends
 ## Contents:
 [DMCA kit](https://github.com/wumwumwum/reCOVERme/tree/main/DMCA%20kit)
 
-[account recovery](https://github.com/wumwumwum/reCOVERme/tree/main/account%20recovery)
+[account recovery](https://github.com/wumwumwum/reCOVERme/tree/main/account%20recovery) - Identify as complete a list as possible of accounts you have online. This is crucial in identifying areas bad actors can exploit, account sthat need to be terminated, and accounts that need to be made secure. A PDF copy is uploaded for quick review. Download a copy of .xlsx spreadsheet to complete the worksheet.
 
-[app data backup menu](https://github.com/wumwumwum/reCOVERme/tree/main/app%20data%20backup%20menu)
+[app data backup menu](https://github.com/wumwumwum/reCOVERme/tree/main/app%20data%20backup%20menu) - Use this document to identify what data is your top priority. Which areas do you think need the most attention? 
 
-[backup vs sync infographic](https://github.com/wumwumwum/reCOVERme/tree/main/backup%20vs%20sync%20infographic)
+[backup vs sync infographic](https://github.com/wumwumwum/reCOVERme/tree/main/backup%20vs%20sync%20infographic) - What's the difference between a backup and a sync?
 
-[family backup docs](https://github.com/wumwumwum/reCOVERme/tree/main/family%20backup%20docs)
-
-[packages, pricing, risk guide](https://github.com/wumwumwum/reCOVERme/tree/main/packages%2C%20pricing%2C%20risk%20guide)
+[family backup docs](https://github.com/wumwumwum/reCOVERme/tree/main/family%20backup%20docs) 
 
 [service tiers toolkit](https://github.com/wumwumwum/reCOVERme/tree/main/service%20tiers%20toolkit)
 
