@@ -10,7 +10,7 @@ I want to help people to understand what their digital footprint is and how to s
 Contained in this repo is all of the information that I have provided to friends and family over the years, including the documents and tools that I use myself, both personally and when working on their behalf.
 
 ## Contents:
-[DMCA kit
+[DMCA kit](https://github.com/wumwumwum/reCOVERme/tree/main/DMCA%20kit)
 
 [account recovery](https://github.com/wumwumwum/reCOVERme/tree/main/account%20recovery)
 
