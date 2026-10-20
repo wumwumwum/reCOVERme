@@ -28,6 +28,6 @@ Contained in this repo is all of the information that I have provided to friends
 
 ## Honorable Mention:
 
-While it is not a part of this repo, my [Average User Backup Guide](https://github.com/wumwumwum/average-user-backup-guide) provides a lot of really good information on creates backups, testing, safe tips, and a lot of other good practices. 
+While it is not a part of this repo, my [Average User Backup Guide](https://github.com/wumwumwum/average-user-backup-guide) provides a lot of really good information on creating backups, testing, safety tips, and a lot of other good practices. 
 
 Please reach out if you have any questions.
